@@ -6,11 +6,19 @@ An Ansible Role that installs [Aurora Agent](https://www.nextron-systems.com/aur
 > you must have a package and a valid license
 > Check https://www.nextron-systems.com/aurora/
 
+## Add Ludus Role
+
+ludus ansible role add frack113.ludus_aurora_agent
+
 ## Requirements
 
 In the `files` folder:
 - aurora-agent.lic
 - aurora-agent.zip
+
+Specifically this files folder:
+
+/opt/ludus/users/%USERPROFILE%/.ansible/roles/frack113.ludus_aurora_agent/files
 
 ## Role Variables
 
@@ -35,7 +43,7 @@ None.
 - hosts: aurora-agent
   roles:
     - frack113.ludus_aurora_agent
-  vars:
+  role_vars:
     ludus_aurora_dashboard: true
 ```
 
