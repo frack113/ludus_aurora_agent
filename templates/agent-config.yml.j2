@@ -15,7 +15,7 @@ eventlog-format: ''
 # Write output as JSON instead of plain text
 json: false
 # Path to the directory containing the Aurora Agent license
-license-path: C:\Program Files\Aurora-Agent
+license-path: {{ ludus_aurora_install_path }}
 # Send logs to this UDP Address (as host:port)
 udp-target: '{{ ludus_aurora_udp_target }}'
 # Format for logs sent via UDP
@@ -61,7 +61,7 @@ print-event-id: false
 # Deactivate all consumers, except for those specified by --activate-module
 deactivate-all-consumers: false
 # Path to a file containing false positive regexes (one per line)
-false-positive-filter: C:\Program Files\Aurora-Agent\config\false-positives.cfg
+false-positive-filter: {{ ludus_aurora_install_path }}\config\false-positives.cfg
 # Generate a unique ID for this execution and print it with every log message
 scan-id: false
 # Send only the status messages to ASGARD, no matches
@@ -73,7 +73,7 @@ dev: false
 # Execute responses that are specified in Sigma rules (e.g. to kill a process)
 activate-responses: false
 # Folder where process dumps should be stored
-dump-folder: C:\Program Files\Aurora-Agent\process-dumps
+dump-folder: {{ ludus_aurora_install_path }}\process-dumps
 # Minimum average time between matches. Sigma Rules with responses will ignore this setting.
 match-throttling: 1m
 # Number of matches for a single rule that are allowed to exceed the throttling for a short time (see --match-throttling)
@@ -82,30 +82,30 @@ match-burst: 5
 scan-timeout: 1s
 # Folders containing IOC files
 ioc-path:
-    - C:\Program Files\Aurora-Agent\signatures\iocs
-    - C:\Program Files\Aurora-Agent\custom-signatures
+    - {{ ludus_aurora_install_path }}\signatures\iocs
+    - {{ ludus_aurora_install_path }}\custom-signatures
 # Report Sigma matches with rules of this level or higher (possible values: informational, low, medium, high, critical)
 minimum-level: medium
 # Folders containing the Sigma files
 rules-path:
-    - C:\Program Files\Aurora-Agent\signatures\sigma-rules
-    - C:\Program Files\Aurora-Agent\custom-signatures
+    - {{ ludus_aurora_install_path }}\signatures\sigma-rules
+    - {{ ludus_aurora_install_path }}\custom-signatures
 # Files containing responses for Sigma rules
 response-set: []
 # Paths to the Sigma log sources that should be loaded
 log-source:
-    - C:\Program Files\Aurora-Agent\log-sources\event-log-sources.yml
-    - C:\Program Files\Aurora-Agent\log-sources\etw-log-sources-standard.yml
-    - C:\Program Files\Aurora-Agent\log-sources\etw-log-source-mappings.yml
+    - {{ ludus_aurora_install_path }}\log-sources\event-log-sources.yml
+    - {{ ludus_aurora_install_path }}\log-sources\etw-log-sources-standard.yml
+    - {{ ludus_aurora_install_path }}\log-sources\etw-log-source-mappings.yml
 # Automatically reload the Sigma rules after changes
 auto-reload: false
 # Paths to file containing the information on which events IOCs should be applied
 ioc-config:
-    - C:\Program Files\Aurora-Agent\ioc-configs\ioc-config-standard.yml
+    - {{ ludus_aurora_install_path }}\ioc-configs\ioc-config-standard.yml
 # Deactivate calculations that rely on disk access (e.g. hash calculation for executables and DLLs)
 no-content-enrichment: false
 # Path to a file containing process exclusion regexes (one per line)
-process-excludes: C:\Program Files\Aurora-Agent\config\process-excludes.cfg
+process-excludes: {{ ludus_aurora_install_path }}\config\process-excludes.cfg
 # Path to a file where all events will be logged. Warning: This may cause high disk usage.
 audit-log: ''
 # Ignore events (by source, event ID and process) that use more processing time (as a percentage of total processing time) than this threshold. Set to 0 to disable automatic exclusion.

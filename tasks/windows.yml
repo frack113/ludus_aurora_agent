@@ -9,7 +9,7 @@
   ansible.windows.win_powershell:
     script: |
       Add-MpPreference -ExclusionPath c:\\aurora
-      Add-MpPreference -ExclusionPath "c:\\Program Files\\Aurora-Agent"
+      Add-MpPreference -ExclusionPath "{{ ludus_aurora_install_path }}"
   when: not service_aurora.exists
 
 - name: Install aurora as service
@@ -17,14 +17,24 @@
     file: install.yml
   when: not service_aurora.exists
 
-# we have aurora time to configure it
-- name: Copy the agent-config template to the host
+- name: Copy custom agent-config template for UDP logging
   ansible.builtin.template:
     src: agent-config.yml.j2
-    dest: 'C:\Program Files\Aurora-Agent\agent-config.yml'
+    dest: '{{ ludus_aurora_install_path }}\agent-config.yml'
+  when: ludus_aurora_udp_target != ''
 
-- name: Restart aurora service
-  win_service:
-    name: Aurora Agent
-    state: restarted
+- name: Add bginfo.exe exclusion to Aurora process excludes
+  community.windows.win_lineinfile:
+    path: '{{ ludus_aurora_install_path }}\config\process-excludes.cfg'
+    line: '{{ item }}'
+    insertafter: EOF
+    create: no
+  loop:
+    - '# Exclusion added by Ansible for Ludus, very noisy process'
+    - 'C:\\ludus\\background\\bginfo\.exe'
+  notify: restart aurora service
 
+- name: Configure Splunk Universal Forwarder
+  ansible.builtin.include_tasks:
+    file: splunkuf.yml
+  when: ludus_aurora_splunk_forwarder

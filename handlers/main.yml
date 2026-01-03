@@ -1,0 +1,10 @@
+---
+- name: restart aurora service
+  win_service:
+    name: Aurora Agent
+    state: restarted
+
+- name: restart splunk forwarder
+  win_service:
+    name: SplunkForwarder
+    state: restarted

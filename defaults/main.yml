@@ -4,3 +4,9 @@
 ludus_aurora_dashboard: false
 ludus_aurora_udp_target: ''
 ludus_aurora_udp_format: ''
+
+ludus_aurora_config_preset: 'standard'
+ludus_aurora_splunk_forwarder: false
+ludus_aurora_json_logging: false
+ludus_aurora_install_path: 'C:\Program Files\Aurora-Agent'
+ludus_aurora_log_path: 'C:\Program Files\Aurora-Agent\aurora_alerts.json.log'
