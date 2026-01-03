@@ -92,7 +92,7 @@ ludus:
       - frack113.ludus_aurora_agent
 ```
 
-With custom configuration:
+With custom configuration and Splunk Attack Range integration:
 
 ```yaml
 ludus:
@@ -106,12 +106,13 @@ ludus:
     windows:
       install_additional_tools: true
     roles:
+      - p4t12ick.ludus_ar_windows
       - frack113.ludus_aurora_agent
     role_vars:
-      ludus_aurora_dashboard: true
-      ludus_aurora_config_preset: 'intense'
+      ludus_ar_windows_splunk_ip: "10.5.20.10"
       ludus_aurora_splunk_forwarder: true
       ludus_aurora_json_logging: true
+      ludus_aurora_dashboard: true
 ```
 
 ## License
