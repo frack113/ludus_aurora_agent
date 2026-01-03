@@ -24,7 +24,7 @@ Specifically this files folder:
 /opt/ludus/users/<your-ludus-username>/.ansible/roles/frack113.ludus_aurora_agent/files
 ```
 
-If using this role with Splunk, the [Aurora TA add-on](https://github.com/NextronSystems/TA-aurora) must be installed on the Splunk server to consume the EDR logs. 
+If using this role with Splunk, the [Aurora TA add-on](https://github.com/NextronSystems/TA-aurora) must be installed on the Splunk server to consume the EDR logs. It is also recommended to add `SHOULD_LINEMERGE = false` to the `nextron:aurora:edr` sourcetype to avoid parsing errors.
 
 ## Role Variables
 
